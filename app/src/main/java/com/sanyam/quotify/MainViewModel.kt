@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 
-class MainViewModel(val context: Context) : ViewModel() {
+class MainViewModel(private val context: Context) : ViewModel() {
     private var quoteList : Array<Quote> = emptyArray()
     private var index : Int = 0
 
@@ -12,7 +12,7 @@ class MainViewModel(val context: Context) : ViewModel() {
         quoteList = loadQuotesFromAssets()
     }
 
-    private fun loadQuotesFromAssets(): Array<Quote> {
+    fun loadQuotesFromAssets(): Array<Quote> {
         val inputStream = context.assets.open("quotes.json")
         val size = inputStream.available()
         val buffer = ByteArray(size)
